@@ -1,0 +1,36 @@
+{
+  "name": "jrf-graylog",
+  "version": "1.0.0",
+  "description": "client for Graylog",
+  "main": "index.js",
+  "scripts": {
+    "example": "node ./example/index.js"
+  },
+  "keywords": [
+    "jrf",
+    "jrfGraylog",
+    "graylog",
+    "log",
+    "client"
+  ],
+  "author": {
+    "name": "jirufik",
+    "url": "https://github.com/jrf-graylog"
+  },
+  "maintainers": [
+    {
+      "name": "jirufik",
+      "url": "https://github.com/jrf-graylog"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jirufik/jrf-graylog"
+  }
+}
