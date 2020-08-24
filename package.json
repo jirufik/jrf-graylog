@@ -1,6 +1,6 @@
 {
   "name": "jrf-graylog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "client for Graylog",
   "main": "index.js",
   "scripts": {
