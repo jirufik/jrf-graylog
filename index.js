@@ -224,6 +224,10 @@ module.exports = class Graylog {
       log = {error: log};
     }
 
+    if (Array.isArray(log)) {
+      log = {message: JSON.stringify(log)};
+    }
+
     if (!log.message) {
       log.message = JSON.stringify(log);
     }
@@ -282,6 +286,12 @@ module.exports = class Graylog {
 
         continue;
 
+      }
+
+      const isArray = Array.isArray(value);
+      if (isArray) {
+        log[key] = JSON.stringify(value, null, 2);
+        continue;
       }
 
       const isObject = typeof value === 'object';

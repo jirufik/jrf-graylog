@@ -13,6 +13,11 @@ graylog.log({code: 1245, label: 'label', level: 6});
 graylog.log({code: 1245, label: 'label', level: graylog.level.ALERT});
 graylog.log({code: 1245, label: 'label', level: 'error'});
 
+graylog.log({
+  data: ['sss', 'sfdsf', 'sfddsf', {odd: {a: 'a', b: {b: [{a: 'a', b: {a: 'a'}}, 'ss']}}}],
+  message: 'array data'
+});
+
 let error;
 try {
   throw new Error('test error');
