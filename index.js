@@ -295,7 +295,7 @@ module.exports = class Graylog {
       }
 
       const isObject = typeof value === 'object';
-      log[key] = isObject ? JSON.parse(value) : String(value);
+      log[key] = isObject ? JSON.stringify(value, null, 2) : String(value);
 
     }
 
