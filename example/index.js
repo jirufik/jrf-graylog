@@ -3,7 +3,8 @@ const Graylog = require('../index');
 const graylog = new Graylog({
   address: 'graylog.server.address',
   host: 'my-web-project.com',
-  node: 'dev.log.test'
+  node: 'dev.log.test',
+  compress: false
 });
 
 graylog.log('String line log');

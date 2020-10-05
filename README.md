@@ -12,7 +12,8 @@ const Graylog = require('jrf-graylog');
 const graylog = new Graylog({
   address: 'graylog.server.address',
   host: 'my-web-project.com',
-  node: 'dev.log.test'
+  node: 'dev.log.test',
+  compress: false
 });
 
 graylog.log('String line log');
@@ -68,3 +69,4 @@ graylog.notice('notice');
 | host | string |  | client hostname |
 | node | string | node | client node name |
 | defaultLevel | string/number/Object | INFO | default log level |
+| compress | boolean | true | log data compression |

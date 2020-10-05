@@ -1,5 +1,7 @@
 const dgram = require('dgram');
 const crypto = require('crypto');
+const zlib = require('zlib');
+const deflate = zlib.deflate;
 
 module.exports = class Graylog {
 
@@ -11,8 +13,9 @@ module.exports = class Graylog {
    * @param {string} [host] - client hostname
    * @param {string} [node = 'node'] - client node name
    * @param {string|number|Object} [defaultLevel = INFO] - default log level
+   * @param {boolean} [compress = true] - log data compression
    */
-  constructor({port = 12201, address = 'localhost', host, node = 'node', defaultLevel}) {
+  constructor({port = 12201, address = 'localhost', host, node = 'node', defaultLevel, compress = true}) {
 
     this.level = {
       EMERGENCY: {code: 0, name: 'emergency', description: 'system is unusable'},
@@ -30,6 +33,7 @@ module.exports = class Graylog {
     this.host = host;
     this.node = node;
     this.defaultLevel = defaultLevel || this.level.INFO;
+    this.compress = compress;
 
     this._version = '1.1';
     this._bufferSize = 1100;
@@ -170,6 +174,20 @@ module.exports = class Graylog {
 
     const message = Buffer.from(JSON.stringify(log));
 
+    if (this.compress) {
+      deflate(message, (err, message) => {
+        this._send(message);
+      });
+    } else {
+      this._send(message);
+    }
+
+    return this;
+
+  }
+
+  _send(message) {
+
     const logLength = message.length;
     const bufferSize = this._bufferSize;
     const send = logLength <= bufferSize;
@@ -212,9 +230,6 @@ module.exports = class Graylog {
       });
 
     }
-
-    return this;
-
   }
 
   _processLog(log, level) {
